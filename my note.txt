@@ -1,0 +1,3 @@
+how to store temp data peressiton use?
+How to use model without entity framework e.g. xml?
+working with Ienumable isn't great?
