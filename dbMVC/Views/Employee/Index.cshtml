@@ -1,0 +1,32 @@
+﻿@using dbMVC.Lib
+@model IEnumerable<dbMVC.Lib.Employee>
+
+@{
+    ViewBag.Title = "Index";    
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>Full Name</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID},null) |
+            @Html.ActionLink("Details", "Details", new {id=item.ID },null) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, null) |
+            </td>
+            <td>
+            @Html.Label(item.FullName)
+        </td>
+    </tr>
+}
+
+</table>

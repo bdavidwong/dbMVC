@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ABCWork"
+    targetNamespace="http://tempuri.org/ABCWork.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ABCWork.xsd"
+    xmlns:mstns="http://tempuri.org/ABCWork.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"           
+>
+  <xs:element name="Employee">
+    <xs:complexType>
+      <xs:attribute name="ID" type="xs:positiveInteger" use="required"/>
+      <xs:attribute name="FullName" type ="xs:string" use="required"/>
+      <xs:attribute name="Phone" type="xs:string" default="xxx-xxx-xxxx" use="optional"/>
+      <xs:attribute name="Email" type="xs:string" use="optional"/>
+      <xs:attribute name="Type" type="xs:string" fixed="Persion" use="optional"/>
+      <xs:attribute name="CreatedDate" type="xs:date" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:simpleType name="EmploymentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Full Time" id="F"/>
+      <xs:enumeration value="Part Time" id="P"/>
+      <xs:enumeration value="Hourly" id="H"/>
+    </xs:restriction>  
+  </xs:simpleType>
+  
+</xs:schema>
