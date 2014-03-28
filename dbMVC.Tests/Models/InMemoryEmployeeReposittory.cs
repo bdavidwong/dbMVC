@@ -30,12 +30,12 @@ namespace dbMVC.Tests.Models
 
         public override Employee this[int index]
         {
-            get { throw new NotImplementedException(); }
+            get { return employees[index]; }
         }
 
         public override IEnumerator<Employee> GetEnumerator()
         {
-            return new List<Employee>().GetEnumerator();
+            return employees.GetEnumerator();
             //return base.GetEnumerator();
         }
 
@@ -46,7 +46,7 @@ namespace dbMVC.Tests.Models
 
         public override Employee Get(int id)
         {
-            throw new NotImplementedException();
+            return employees[id];
         }
     }
 }

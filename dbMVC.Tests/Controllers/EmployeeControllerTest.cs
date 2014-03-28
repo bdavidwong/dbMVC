@@ -11,6 +11,7 @@ using dbMVC;
 using dbMVC.Controllers;
 using dbMVC.Lib;
 using dbMVC.Tests.Models;
+using Moq;
 
 namespace dbMVC.Tests.Controllers
 {
@@ -26,7 +27,7 @@ namespace dbMVC.Tests.Controllers
             // TODO: Add constructor logic here
             //
         }
-        private EmployeeManager inEmployees = new EmployeeManager();
+        private IEmployeeManager inEmployees = new InMemoryEmployeeReposittory();
 
         private TestContext testContextInstance;
 
@@ -87,6 +88,19 @@ namespace dbMVC.Tests.Controllers
             var model = result.Model as Employee;
 
             Assert.IsTrue(id == model.ID);
+        }
+
+        [TestMethod]
+        public void Get_DeleteTest()
+        {
+            Mock<IEmployeeManager> mymock = new Mock<IEmployeeManager>();
+            mymock.Setup(m => m[0]).Returns(new Employee() {ID = 1});
+
+            Employee emp1 = this.inEmployees.Get(0);
+            Employee empM = ((IEmployeeManager)mymock.Object)[0];
+
+            Assert.IsTrue(emp1.ID == empM.ID);
+
         }
 
         private  static EmployeeController getEmployeeController()
