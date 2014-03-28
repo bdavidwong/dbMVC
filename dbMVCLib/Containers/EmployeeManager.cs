@@ -6,32 +6,24 @@ using System.Text;
 
 namespace dbMVC.Lib
 {
-   public class EmployeeManager : IEnumerable<Employee>
+   public class EmployeeManager : EmployeeManagerBase
    {
-       private static List<Employee> employees = new List<Employee>();
-
-       public EmployeeManager()
+       public EmployeeManager() : base()
        {
-           if (employees.Count == 0)
-           {
-               employees.Add(new Employee() {ID = 1, FullName = "Daisy", Email = "d@d.com", Phone = "301-232-1343"});
-               employees.Add(new Employee() {ID = 2, FullName = "Harrison", Email = "h@d.com", Phone = "231-332-1333"});
-               employees.Add(new Employee() {ID = 3, FullName = "Mary", Email = "m@d.com", Phone = "231-332-1333"});
-           }
        }
        
-       public  void Add(Employee value)
+       public override void Add(Employee value)
        {
            employees.Add(value);
            
        }
 
-       public bool Remove(Employee value)
+       public override bool Remove(Employee value)
        {
            return employees.Remove(value);
        }
 
-       public bool Update(Employee data)
+       public override bool Update(Employee data)
        {
            var foundItem = employees.Single(x => x.ID == data.ID);
            if (foundItem != null)
@@ -47,33 +39,28 @@ namespace dbMVC.Lib
            
        }
        
-       public bool Update(IEnumerable<Employee> data )
+       public override bool Update(IEnumerable<Employee> data )
        {
            employees = (List<Employee>)data;
            return true;
        }
 
-       public Employee this[int index]
+       public override Employee this[int index]
        {
            get { return employees[index]; }
        }
 
-       public IEnumerator<Employee> GetEnumerator()
+       public override IEnumerator<Employee> GetEnumerator()
        {
            return employees.GetEnumerator();
        }
 
-       IEnumerator IEnumerable.GetEnumerator()
-       {
-           return this.GetEnumerator();
-       }
-
-       public IEnumerable<Employee> GetAll()
+       public override IEnumerable<Employee> GetAll()
        {
            return employees;
        }
 
-       public Employee Get(int id)
+       public override Employee Get(int id)
        {
            return employees.Single(x => x.ID == id);
        }
